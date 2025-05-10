@@ -12,7 +12,7 @@ class HeartMod(loader.Module):
     """отображает анимированное сердечко дающие любовь."""
 
     strings = {
-        "name": "@YMEPOTBAC Любовь 2",
+        "name": "@YMEPOTBAC Любовь 1",
         "not_subscribed": "<b>для использования этой команды необходимо подписаться на канал</b>",
     }
 
