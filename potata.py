@@ -3,58 +3,62 @@ from asyncio import sleep
 import random
 
 @loader.tds
-class PotatoAnimMod(loader.Module):
-    """Анимированная картошка на всех языках"""
+class PotatoMod(loader.Module):
+    """РђРЅРёРјРёСЂРѕРІР°РЅРЅР°СЏ РєР°СЂС‚РѕС€РєР° РЅР° РІСЃРµС… СЏР·С‹РєР°С…"""
     strings = {
-        "name": "@YMEPOTBAC картошка на всех языках",
-        "loading": "<i>Загружаю картофельные переводы...</i>",
-        "final": "?? <b>Картошка на разных языках:</b>\n\n{}"
+        "name": "@YMEPOTBAC РєР°СЂС‚РѕС€РєР° РЅР° РІСЃРµС… СЏР·С‹РєР°С… РјРёСЂР°",
+        "loading": "<i>Р§РёС‰Сѓ РєР°СЂС‚РѕС€РµС‡РєСѓ...</i>",
+        "final": "рџҐ” <b>Р’РѕС‚ РєР°СЂС‚РѕС€РєР° РЅР° СЂР°Р·РЅС‹С… СЏР·С‹РєР°С…:</b>\n\n{}"
     }
 
-    async def potatocmd(self, message):
-        """- анимированный показ картошки на разных языках"""
+    async def РєР°СЂС‚РѕС€РєР°cmd(self, message):
+        """- РїРѕРєР°Р·Р°С‚СЊ Р°РЅРёРјР°С†РёСЋ СЃ РєР°СЂС‚РѕС€РєРѕР№"""
         await utils.answer(message, self.strings["loading"])
         await sleep(1)
 
-        potatoes = [
-            "Русский: картошка",
-            "Английский: potato",
-            "Испанский: patata",
-            "Французский: pomme de terre",
-            "Немецкий: Kartoffel",
-            "Итальянский: patata",
-            "Португальский: batata",
-            "Украинский: картопля",
-            "Белорусский: бульба",
-            "Польский: ziemniak",
-            "Чешский: brambor",
-            "Нидерландский: aardappel",
-            "Шведский: potatis",
-            "Финский: peruna",
-            "Венгерский: burgonya",
-            "Турецкий: patates",
-            "Арабский: ????? (batatis)",
-            "Японский: ????? (jagaimo)",
-            "Китайский: ?? (tudou)",
-            "Корейский: ?? (gamja)"
+        all_potatoes = [
+            "Р СѓСЃСЃРєРёР№: РєР°СЂС‚РѕС€РєР°",
+            "РђРЅРіР»РёР№СЃРєРёР№: potato",
+            "РСЃРїР°РЅСЃРєРёР№: patata",
+            "Р¤СЂР°РЅС†СѓР·СЃРєРёР№: pomme de terre",
+            "РќРµРјРµС†РєРёР№: Kartoffel",
+            "РС‚Р°Р»СЊСЏРЅСЃРєРёР№: patata",
+            "РџРѕСЂС‚СѓРіР°Р»СЊСЃРєРёР№: batata",
+            "РЈРєСЂР°РёРЅСЃРєРёР№: РєР°СЂС‚РѕРїР»СЏ",
+            "Р‘РµР»РѕСЂСѓСЃСЃРєРёР№: Р±СѓР»СЊР±Р°",
+            "РџРѕР»СЊСЃРєРёР№: ziemniak",
+            "Р§РµС€СЃРєРёР№: brambor",
+            "РќРёРґРµСЂР»Р°РЅРґСЃРєРёР№: aardappel",
+            "РЁРІРµРґСЃРєРёР№: potatis",
+            "Р¤РёРЅСЃРєРёР№: peruna",
+            "Р’РµРЅРіРµСЂСЃРєРёР№: burgonya",
+            "РўСѓСЂРµС†РєРёР№: patates",
+            "РђСЂР°Р±СЃРєРёР№: ШЁШ·Ш§Ш·Ші (batatis)",
+            "РЇРїРѕРЅСЃРєРёР№: гЃг‚ѓгЃЊгЃ„г‚‚ (jagaimo)",
+            "РљРёС‚Р°Р№СЃРєРёР№: ењџи±† (tЗ”dГІu)",
+            "РљРѕСЂРµР№СЃРєРёР№: к°ђмћђ (gamja)"
         ]
 
-        # Перемешиваем список
-        random.shuffle(potatoes)
-        
-        # Создаем 2 цикла анимации
-        for cycle in range(2):
-            # Показываем каждый вариант по очереди
-            for i in range(len(potatoes)):
-                current = "\n".join(potatoes[:i+1])
-                await utils.answer(
-                    message, 
-                    f"?? <b>Собираю картошку... (цикл {cycle+1}/2)</b>\n\n{current}"
-                )
-                await sleep(0.3)  # Задержка между добавлением языков
+        # РџРµСЂРІС‹Р№ РїСЂРѕС…РѕРґ - Р±С‹СЃС‚СЂР°СЏ Р°РЅРёРјР°С†РёСЏ
+        for i in range(1, 6):
+            sample = random.sample(all_potatoes, i)
+            await utils.answer(
+                message,
+                f"рџ§‘вЂЌрџЊѕ <b>РЎРѕР±РёСЂР°СЋ СѓСЂРѕР¶Р°Р№... {i*5}/100%</b>\n\n" + "\n".join(sample)
+            )
+            await sleep(0.2)
 
-        # Финальный результат (15 случайных вариантов)
-        selected = random.sample(potatoes, min(15, len(potatoes)))
+        # Р’С‚РѕСЂРѕР№ РїСЂРѕС…РѕРґ - РїРѕР»РЅС‹Р№ СЃРїРёСЃРѕРє
+        random.shuffle(all_potatoes)
+        for i in range(0, len(all_potatoes), 3):
+            await utils.answer(
+                message,
+                "рџЊЌ <b>РњРµР¶РґСѓРЅР°СЂРѕРґРЅР°СЏ РєР°СЂС‚РѕС€РєР°:</b>\n\n" + "\n".join(all_potatoes[:i+3])
+            )
+            await sleep(0.3)
+
+        # Р¤РёРЅР°Р»СЊРЅС‹Р№ СЂРµР·СѓР»СЊС‚Р°С‚ (РІСЃРµ РІР°СЂРёР°РЅС‚С‹)
         await utils.answer(
-            message, 
-            self.strings["final"].format("\n".join(selected))
+            message,
+            self.strings["final"].format("\n".join(all_potatoes))
+        )
